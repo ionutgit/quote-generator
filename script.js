@@ -5,9 +5,23 @@ const quoteText = document.getElementById('quote');
 const quoteAuthor = document.getElementById('author');
 const quoteTwitter = document.getElementById('twitter');
 const quoteNewBtn = document.getElementById('new-quote');
+const loader = document.getElementById('loader');
+
+// Show loading
+function loading() {
+    loader.hidden = false;
+    quoteContainer.hidden = true;
+}
+
+// Hide loader
+function complete() {
+    quoteContainer.hidden = false;
+    loader.hidden = true;
+}
 
 // get the quote
 function newQuote() {
+    loading();
     const quote = quotes[Math.floor(Math.random() * quotes.length)];
 
     // check if quote is long
@@ -16,7 +30,6 @@ function newQuote() {
     } else {
         quoteText.classList.remove('long-quote');
     }
-    quoteText.textContent = quote.text;
 
     // check if author exist
     if (quote.author) {
@@ -24,10 +37,14 @@ function newQuote() {
     } else {
         quoteAuthor.textContent = 'Undefined';
     }
+
+    quoteText.textContent = quote.text;
+    complete();
 }
 
 // get the quotes
 async function getQuotes() {
+    loading();
     const apiUrl = 'https://type.fit/api/quotes';
     try {
         const response = await fetch(apiUrl);
