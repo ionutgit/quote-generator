@@ -11,7 +11,6 @@ async function getQuotes() {
     try {
         const response = await fetch(apiUrl);
         quotes = await response.json();
-        // console.log(quotes[12]);
         newQuote();
     } catch (error) {
         alert(error);
