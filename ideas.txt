@@ -1,0 +1,2 @@
+-sa fac un api de background-uri
+-sa fac un api de citate crestine
