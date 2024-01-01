@@ -45,7 +45,7 @@ function newQuote() {
 // get the quotes
 async function getQuote() {
     loading();
-    const proxy = 'https://cors-anywhere.herokuapp.com/';
+    const proxy = 'https://vast-waters-86754-6428dc19c8b5.herokuapp.com/';
     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
 
     try {
