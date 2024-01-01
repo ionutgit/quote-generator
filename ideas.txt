@@ -1,2 +1,7 @@
 -sa fac un api de background-uri
 -sa fac un api de citate crestine
+cum fac un api cu diferite optiuni
+    lang: sa o dau dinamic
+    
+
+-exemple de api-uri free dupa care sa ma iau, sa le studiez, sa le inteleg

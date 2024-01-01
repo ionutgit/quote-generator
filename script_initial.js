@@ -43,20 +43,15 @@ function newQuote() {
 }
 
 // get the quotes
-async function getQuote() {
+async function getQuotes() {
     loading();
-    const proxy = 'https://cors-anywhere.herokuapp.com/';
-    const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
-
+    const apiUrl = 'https://type.fit/api/quotes';
     try {
-        const response = await fetch(proxy + apiUrl);
+        const response = await fetch(apiUrl);
         quotes = await response.json();
-        console.log(quotes);
-        // newQuote();
+        newQuote();
     } catch (error) {
-        // getQuotes();
-        console.log('whops, no quote', error);
-        // alert(error);
+        alert(error);
     }
 
 }
@@ -71,4 +66,4 @@ quoteTwitter.addEventListener('click', tweetQuote);
 quoteNewBtn.addEventListener('click', newQuote);
 
 // On Load
-getQuote();
+getQuotes();
