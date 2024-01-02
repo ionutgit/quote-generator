@@ -44,18 +44,33 @@ function newQuote() {
 
 // get the quotes
 async function getQuote() {
-    loading();
+    // loading();
     const proxy = 'https://vast-waters-86754-6428dc19c8b5.herokuapp.com/';
     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
 
     try {
         const response = await fetch(proxy + apiUrl);
-        quotes = await response.json();
-        console.log(quotes);
+        const data = await response.json();
+        console.log(data);
+
+        // check if quote is long
+        if (data.quoteText.length > 120) {
+            quoteText.classList.add('long-quote');
+        } else {
+            quoteText.classList.remove('long-quote');
+        }
+    
+        // check if author exist
+        if (data.quoteAuthor.length) {
+            quoteAuthor.innerText = data.quoteAuthor;
+        } else {
+            quoteAuthor.innerText = 'Undefined';
+        }
+
+        quoteText.innerText = data.quoteText;
         // newQuote();
     } catch (error) {
         // getQuotes();
-        console.log('whops, no quote', error);
         // alert(error);
     }
 
@@ -68,7 +83,7 @@ function tweetQuote() {
 
 //add event listeners
 quoteTwitter.addEventListener('click', tweetQuote);
-quoteNewBtn.addEventListener('click', newQuote);
+quoteNewBtn.addEventListener('click', getQuote);
 
 // On Load
 getQuote();
