@@ -19,32 +19,9 @@ function complete() {
     loader.hidden = true;
 }
 
-// get the quote
-function newQuote() {
-    loading();
-    const quote = quotes[Math.floor(Math.random() * quotes.length)];
-
-    // check if quote is long
-    if (quoteText.textContent.length > 120) {
-        quoteText.classList.add('long-quote');
-    } else {
-        quoteText.classList.remove('long-quote');
-    }
-
-    // check if author exist
-    if (quote.author) {
-        quoteAuthor.textContent = quote.author;
-    } else {
-        quoteAuthor.textContent = 'Undefined';
-    }
-
-    quoteText.textContent = quote.text;
-    complete();
-}
-
 // get the quotes
 async function getQuote() {
-    // loading();
+    loading();
     const proxy = 'https://vast-waters-86754-6428dc19c8b5.herokuapp.com/';
     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
 
@@ -68,7 +45,7 @@ async function getQuote() {
         }
 
         quoteText.innerText = data.quoteText;
-        // newQuote();
+        complete();
     } catch (error) {
         // getQuotes();
         // alert(error);
