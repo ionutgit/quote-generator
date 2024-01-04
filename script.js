@@ -7,21 +7,19 @@ const quoteTwitter = document.getElementById('twitter');
 const quoteNewBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 
-// Show loading
-function loading() {
+function showLoadSpinner() {
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
 
-// Hide loader
-function complete() {
+function hideLoadSpinner() {
     quoteContainer.hidden = false;
     loader.hidden = true;
 }
 
 // get the quotes
 async function getQuote() {
-    loading();
+    showLoadSpinner();
     const proxy = 'https://vast-waters-86754-6428dc19c8b5.herokuapp.com/';
     const apiUrl = 'http://api.forismatic.com/api/1.0/?method=getQuote&lang=en&format=json';
 
@@ -45,10 +43,10 @@ async function getQuote() {
         }
 
         quoteText.innerText = data.quoteText;
-        complete();
+        hideLoadSpinner();
     } catch (error) {
         // getQuotes();
-        // alert(error);
+        alert (error);
     }
 
 }
