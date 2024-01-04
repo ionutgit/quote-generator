@@ -26,7 +26,6 @@ async function getQuote() {
     try {
         const response = await fetch(proxy + apiUrl);
         const data = await response.json();
-        console.log(data);
 
         // check if quote is long
         if (data.quoteText.length > 120) {
